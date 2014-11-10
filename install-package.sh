@@ -1,6 +1,6 @@
 # Set variables
 set -e
-TL_VERSION=2014
+TEXLIVE=/usr/local/texlive/2014
 NAME=yanone-kaffeesatz
 
 # Check if package is available
@@ -19,12 +19,12 @@ tar xf $NAME.tar.gz
 
 # Install files in current TeX Live installation
 cd $NAME
-if [ ! -d /usr/local/texlive/$TL_VERSION/texmf-dist/fonts/opentype/public/$NAME ]
+if [ ! -d $TEXLIVE/texmf-dist/fonts/opentype/public/$NAME ]
 then
-    sudo mkdir /usr/local/texlive/$TL_VERSION/texmf-dist/fonts/opentype/public/$NAME
+    sudo mkdir $TEXLIVE/texmf-dist/fonts/opentype/public/$NAME
 fi
-sudo /bin/cp -f *.otf /usr/local/texlive/$TL_VERSION/texmf-dist/fonts/opentype/public/$NAME
-sudo /usr/local/texlive/$TL_VERSION/bin/x86_64-linux/texhash
+sudo /bin/cp -f *.otf $TEXLIVE/texmf-dist/fonts/opentype/public/$NAME
+sudo $TEXLIVE/bin/x86_64-linux/texhash
 cd ..
 
 # Remove package directory
