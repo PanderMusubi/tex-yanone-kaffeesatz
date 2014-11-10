@@ -2,7 +2,10 @@
 set -e
 NAME=yanone-kaffeesatz
 ARCHIVE=YanoneKaffeesatz.zip
+DOC=YanoneKaffeesatz.pdf
 BASE=http://www.yanone.de/typedesign/kaffeesatz
+FONTS=$BASE/$ARCHIVE
+SAMPLES=$BASE/$DOC
 
 # Create new download and package directories
 if [ -e download ]
@@ -20,10 +23,12 @@ mkdir $NAME
 cd download
 if [ ! -e $ARCHIVE ]
 then
-	wget $BASE/$ARCHIVE
+	wget $FONTS
 fi
 unzip $ARCHIVE
 cp *.otf ../$NAME
+wget $SAMPLES
+cp $DOC ../$NAME/$NAME.pdf
 cd ..
 cp README.md $NAME/README
 
